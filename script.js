@@ -12,15 +12,20 @@ $(document).ready(function () {
   });
 
   // упр 3
-  $("#ex3").click(function() {
+  $("#ex3").click(function () {
     let search = prompt("Введите строку для поиска:");
-    $.ajax({
-      url: "index.php",
-      type: "GET",
-      data: { buttonId: $(this).attr("id"), userSearch: search },
-      success: function (response) {
-        $("#output").html(response);
-      },
-    });
+    if (search) {
+      search = search.trim();
+      if (search) {
+        $.ajax({
+          url: "index.php",
+          type: "GET",
+          data: { buttonId: $(this).attr("id"), userSearch: search },
+          success: function (response) {
+            $("#output").html(response);
+          },
+        });
+      }
+    }
   });
 });
